@@ -12,30 +12,30 @@ import org.jpacman.framework.model.IPointInspector;
 
 /**
  * A panel for displaying the points earned so far in the game.
- * 
+ *
  * @author Arie van Deursen, TU Delft, Jan 23, 2012
  */
-public class PointsPanel extends JPanel implements Observer {
+public final class PointsPanel extends JPanel implements Observer {
 
 	private static final long serialVersionUID = -6773251381947430351L;
 
 	private static final int PANEL_HEIGHT = 45;
 	private static final int PANEL_WIDTH = 100;
-	
+
 	private IPointInspector pointInspector;
-	
+
 	private JTextField eatenField;
-	
+
 	/**
 	 * Initialize the UI fields displaying the points.
-	 * 
+	 *
 	 * @param points Inspector for points as maintained by model.
 	 */
-	public void initialize(IPointInspector points) {
+	public void initialize(final IPointInspector points) {
 		assert points != null;
-		
+
 		pointInspector = points;
-		
+
         JLabel pointsLabel = new JLabel("Points: ");
         final int eatenWidth = 7;
         eatenField = new JTextField("0", eatenWidth);
@@ -52,15 +52,18 @@ public class PointsPanel extends JPanel implements Observer {
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+    public void update(final Observable o, final Object arg) {
 		displayPoints();
 	}
-	
+
+	/**
+	 *
+	 */
 	private void displayPoints() {
 		assert pointInspector != null;
-		String points = 
-				pointInspector.getFoodEaten() 
-				+ " / " 
+		String points =
+				pointInspector.getFoodEaten()
+				+ " / "
 				+ pointInspector.totalFoodInGame();
 		eatenField.setText(points);
 	}
