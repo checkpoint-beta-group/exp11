@@ -42,7 +42,6 @@ IController {
      */
     private final IGameInteractor theGame;
 
-    
     /**
      * The default delay between ghost moves.
      */
@@ -54,7 +53,7 @@ IController {
      *
      * @param game The underlying model of the game.
      */
-    public AbstractGhostMover(IGameInteractor game) {
+    public AbstractGhostMover(final IGameInteractor game){
         theGame = game;
         timer = new Timer(DELAY, this);
         assert controllerInvariant();
@@ -73,7 +72,7 @@ IController {
      * @param e Event caught.
      */
     @Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(final ActionEvent e) {
         assert controllerInvariant();
         synchronized (theGame) {
             doTick();
@@ -117,7 +116,7 @@ IController {
         if (!ghosts.isEmpty()) {
             final int ghostIndex = randomizer.nextInt(ghosts.size());
             theGhost = ghosts.get(ghostIndex);
-        } 
+        }
         return theGhost;
     }
 
@@ -128,7 +127,7 @@ IController {
     protected static Random getRandomizer() {
         return randomizer;
     }
-    
+
     /**
      * @return The object to manipulate the game model.
      */
